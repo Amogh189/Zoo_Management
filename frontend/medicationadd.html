@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert into Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="insertForm">
+  <label for="record_id">record_id:</label>
+  <input type="number" id="record_id" name="record_id" required><br>
+
+  <label for="animal_id">animal_id:</label>
+  <input type="number" id="animal_id" name="animal_id" required><br>
+
+  <label for="doc_id">doc_id:</label>
+  <input type="number" id="doc_id" name="doc_id" required><br>
+
+  <label for="treatment">treatment:</label>
+  <input type="text" id="treatment" name="treatment" required><br>
+
+  <label for="medication_date">medication_date:</label>
+  <input type="date" id="medication_date" name="medication_date" required><br>
+
+  <button type="button" onclick="insertIntoDatabase()">Insert into Database</button>
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function insertIntoDatabase() {
+    const record_id = document.getElementById('record_id').value;
+    const animal_id = document.getElementById('animal_id').value;
+    const doc_id  = document.getElementById('doc_id').value;
+    const treatment  = document.getElementById('treatment').value;
+    const medication_date  = document.getElementById('medication_date').value;
+    try {
+      const response = await fetch('http://localhost:8080/medications', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ record_id,animal_id,doc_id,treatment,medication_date }),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error inserting into database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert into Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="insertForm">
+  <label for="ticket_id">ticket_id:</label>
+  <input type="number" id="ticket_id" name="ticket_id" required><br>
+
+  <label for="price">price:</label>
+  <input type="number" id="price" name="price" required><br>
+
+  
+  <button type="button" onclick="insertIntoDatabase()">Insert into Database</button>
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function insertIntoDatabase() {
+    const ticket_id = document.getElementById('ticket_id').value;
+    const price = document.getElementById('price').value;
+    
+
+    try {
+      const response = await fetch('http://localhost:8080/tickets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ticket_id,price }),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error inserting into database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert into Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="insertForm">
+  <label for="keeper_id">keeper_id:</label>
+  <input type="number" id="keeper_id" name="keeper_id" required><br>
+
+  <label for="keeper_name">keeper_name</label>
+  <input type="text" id="keeper_name" name="keeper_name" required><br>
+
+  <label for="contact">contact:</label>
+  <input type="number" id="contact" name="contact" required><br>
+
+  <label for="age">age:</label>
+  <input type="number" id="age" name="age" required><br>
+
+  <button type="button" onclick="insertIntoDatabase()">Insert into Database</button>
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function insertIntoDatabase() {
+    const keeper_id = document.getElementById('keeper_id').value;
+    const keeper_name = document.getElementById('keeper_name').value;
+    const contact  = document.getElementById('contact').value;
+    const age  = document.getElementById('age').value;
+
+    try {
+      const response = await fetch('http://localhost:8080/keepers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ keeper_id,keeper_name,contact,age }),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error inserting into database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

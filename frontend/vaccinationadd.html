@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert into Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="insertForm">
+  <label for="vaccination_id">vaccination_id:</label>
+  <input type="number" id="vaccination_id" name="vaccination_id" required><br>
+
+  <label for="vaccination_name">vaccination_name:</label>
+  <input type="text" id="vaccination_name" name="vaccination_name" required><br>
+
+  <label for="doc_id">doc_id:</label>
+  <input type="number" id="doc_id" name="doc_id" required><br>
+
+  <label for="animal_id">animal_id:</label>
+  <input type="number" id="animal_id" name="animal_id" required><br>
+
+  <label for="vaccination_date">vaccination_date:</label>
+  <input type="date" id="vaccination_date" name="vaccination_date" required><br>
+
+  <label for="nextvisit">nextvisit:</label>
+  <input type="date" id="nextvisit" name="nextvisit" required><br>
+
+  
+  <button type="button" onclick="insertIntoDatabase()">Insert into Database</button>
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function insertIntoDatabase() {
+    const vaccination_id = document.getElementById('vaccination_id').value;
+    const vaccination_name= document.getElementById('vaccination_name').value;
+    const doc_id = document.getElementById('doc_id').value;
+    const animal_id = document.getElementById('animal_id').value;
+    const vaccination_date = document.getElementById('vaccination_date').value;
+    const nextvisit = document.getElementById('nextvisit').value;
+    
+
+    try {
+      const response = await fetch('http://localhost:8080/vaccinations', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({vaccination_id,vaccination_name,doc_id,animal_id,vaccination_date,nextvisit}),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error inserting into database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

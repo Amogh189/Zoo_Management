@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: lightblue;
+}
+h1{
+    font-size: 40px;
+    line-height: 1.5px;
+    letter-spacing: 0.3px;
+    text-align: center;
+    color: black;
+    margin-top: 40px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px #000000;
+}
+p{
+   font-size: 30px;
+   text-align: left;
+   color: black;
+}
+li{
+    font-size: 30px;
+   text-align: left;
+   color: black;
+}

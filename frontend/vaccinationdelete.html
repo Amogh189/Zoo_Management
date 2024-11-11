@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Delete from Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="deleteForm">
+  <label for="vaccination_id">vaccination_id:</label>
+  <input type="number" id="vaccination_id" name="vaccination_id" required><br>
+  <button type="button" onclick="deletefromDatabase()">delete from Database</button>
+
+
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function deletefromDatabase() {
+    const vaccination_id = document.getElementById('vaccination_id').value;
+
+    try {
+      const response = await fetch('http://localhost:8080/vaccinations', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ vaccination_id  }),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error deleting from database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

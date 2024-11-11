@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insert into Database Form</title>
+</head>
+<body>
+
+<!-- HTML form to insert values -->
+<form id="insertForm">
+  <label for="visitor_id">visitor_id:</label>
+  <input type="number" id="visitor_id" name="visitor_id" required>
+  <br>
+
+  <label for="visitor_name">visitor_name</label>
+  <input type="text" id="visitor_name" name="visitor_name" required>
+  <br>
+
+  <label for="contact">contact:</label>
+  <input type="number" id="contact" name="contact" required>
+  <br>
+
+  <label for="ticket_id">ticket_id:</label>
+  <input type="number" id="ticket_id" name="ticket_id" required>
+  <br>
+
+  <button type="button" onclick="insertIntoDatabase()">Insert into Database</button>
+</form>
+
+<!-- Container for displaying messages -->
+<div id="messageContainer"></div>
+
+<script>
+  async function insertIntoDatabase() {
+    const visitor_id = document.getElementById('visitor_id').value;
+    const visitor_name = document.getElementById('visitor_name').value;
+    const contact  = document.getElementById('contact').value;
+    const ticket_id  = document.getElementById('ticket_id').value;
+
+    try {
+      const response = await fetch('http://localhost:8080/visitors', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ visitor_id,visitor_name,contact,ticket_id }),
+      });
+
+      const result = await response.json();
+      document.getElementById('messageContainer').innerHTML = result.message;
+    } catch (error) {
+      console.error('Error inserting into database:', error);
+    }
+  }
+</script>
+
+</body>
+</html>

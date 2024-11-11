@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our ZOO</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .carousel-container {
+  width: 600px;
+  height: 400px;
+  position: relative;
+  margin: 0 auto;
+
+}
+
+.navigation-buttons .previous {
+  position: absolute;
+  z-index: 10;
+  font-size: 25px;
+  top: 40%;
+  left: 10px;
+  font-weight: 700;
+}
+
+.navigation-buttons .next {
+  right: 10px;
+  position: absolute;
+  font-size: 25px;
+  z-index: 10;
+  top: 40%;
+}
+.navigation-buttons .nav-btn {
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.navigation .nav-btn:hover {
+  background: white;
+}
+
+.slider-carousel {
+  margin-top: 20px;
+  transition: all 0.3s ease;
+
+}
+.slider-carousel img {
+  width: 100%;
+  transition: all 0.3s ease;
+  border:8px solid white;
+}
+
+.images {
+  position: absolute;
+  display: none;
+}
+.main {
+  display: block;
+}
+
+</style>
+</head>
+<body>
+    <div class="index" style="background-color: whitesmoke; width:100%; height: 50px;display: flex; justify-content: space-between;">
+        <div class="logo" style=" width: 50px; height: 50px;">
+            <img src="logo.svg" style="height: 50px; width: 200px;margin-left: 20px; ">
+        </div>
+        <div class="words" style=" width: 300px; display: flex; justify-content: space-around; margin-top: 15px;">
+            <div class="child1">
+                <h3>HISTORY</h3>
+            </div>
+            <div class="child2">
+               <a href="mission.html"><p style="color: black; font-size: 18px;">ABOUT US</p></a>
+            </div>
+        </div>
+        
+    </div>
+    <h1>Sri Chamarajendra Zoological Gardens</h1>
+    <br>
+    <div id="parent-container">
+        <div class="navigation-buttons">
+          <div class="previous nav-btn"><</div>
+          <div class="next nav-btn">></div>
+        </div>
+    
+        <div class="slider-carousel" style="margin-left: 50px;">
+          <div class="images main">
+            <img src="/frontend/images/tigerimg.jpg" alt="no image" style="width: 1390px ; height: 600px; " >
+          </div>
+          <div class="images">
+            <img src="/frontend/images/800px-Nijlpaard.jpg" alt="no image" style="width: 1390px ; height: 600px; " >
+          </div>
+          <div class="images">
+            <img src="/frontend/images/WR202206_GiraffeTranslocation_012_360559_reduced.jpg" alt="no image" style="width: 1390px ; height: 600px; " >
+      </div>    
+      <div class="images">
+        <img src="/frontend/images/GettyImages-1043597638-49acd69677d7442588c1d8930d298a59.jpg" alt="no image" style="width: 1390px ; height: 600px; " >
+      </div>
+      <div class="images">
+        <img src="/frontend/images/pexels-venkat-ragavan-982021.jpg" alt="no image" style="width: 1390px ; height: 600px; " >
+      </div>  
+    </div>
+    <script>
+
+        const previous = document.querySelector('.previous');
+        const next = document.querySelector('.next');
+        const images = document.querySelector('.slider-carousel').children;
+        const totalImages = images.length;
+        let currentIndex = 0;
+
+        previous.addEventListener('click', () => {
+          previousImage()
+        })
+    
+        next.addEventListener('click', () => {
+          nextImage();
+        })
+        
+        
+        // Function to go to next Image
+        function nextImage(){
+            images[currentIndex].classList.remove('main');
+    	if(currentIndex == totalImages-1){
+        	currentIndex = 0;
+        }
+        else{
+        	currentIndex++;
+        }
+
+      images[currentIndex].classList.add('main');
+      
+    }
+    function previousImage(){
+
+      images[currentIndex].classList.remove('main');
+    	if(currentIndex == 0){
+        	currentIndex = totalImages-1;
+        }
+        else{
+        	currentIndex--;
+        }
+        images[currentIndex].classList.add('main');
+
+    }
+  
+    
+    </script>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <div style="background-color: black; width: 500px; height: 50px;" >
+      <p style="font-size: 30px; font-family: 'Times New Roman', Times, serif; color: azure;"> MANAGMENT</p>
+    </div>
+    <br><br>
+<div class="parent" style="height: 500px; width: 100%; display: flex; justify-content: space-evenly;">
+  <div class="child1" style="text-align: center;">
+   <a href="animal.html"> <img src="/frontend/images/40240971-group-of-asia-animals-with-fresh-green-grass-on-white-background.jpg" alt="no image" style="height: 300px; width: 300px; margin-left: 50px; border: 10px solid whitesmoke;"></a>
+    <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ; text-align: center;">ANIMALS</p>
+  </div>
+  <div class="child1" style="text-align: center;">
+   <a href="ticket.html"><img src="/frontend/images/360_F_88666263_Eq0QV4SVRkWHgkNaRJn671g9BNnphQmm.jpg" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;border: 10px solid whitesmoke;"></a>
+    <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">TICKET</p>
+  </div>
+  <div class="child1" style="text-align: center";>
+  <a href="visitor.html"><img src="/frontend/images/images.jpeg" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;border: 10px solid whitesmoke;"></a>
+   <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">VISITORS</p>
+  </div>
+</div >
+<br>
+<div class="parent2" style="height: 500px; width: 100%; display: flex; justify-content: space-evenly;">
+<div class="child21" style="text-align: center;">
+  <a href="enclosure.html"><img src="/frontend/images/images (1).jpeg" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;;border: 10px solid whitesmoke;"></a>
+  <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">ENCLOSURE</p>
+</div>
+<div class="child22" style="text-align: center;">
+  <a href="keeper.html"><img src="/frontend/images/pngtree-zookeeper-cartoon-colored-clipart-illustration-graphic-colored-picture-vector-png-image_12942008.png" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;;border: 10px solid whitesmoke;"></a>
+  <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">KEEPER</p>
+</div>
+
+</div>
+<br><br>
+<div style="height: 500px; width: 100%; display: flex; justify-content: space-evenly;">
+<div style="text-align: center;">
+  <a href="medication.html"><img src="/frontend/images/360_F_147273516_rsoZM1qSExQQqdh0vEPrHVgm9sa2lTFT.jpg" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;;border: 10px solid whitesmoke;"></a>
+  <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">MEDICATION</p>
+</div>
+<div style="text-align: center;">
+<a href="vaccination.html"><img src="/frontend/images/download.png" alt="no image" style="height: 300px; width: 300px; margin-left: 50px;;border: 10px solid whitesmoke;"></a>
+  <p style="font-size: 30px;color: black;text-shadow:  2px 2px 4px #000000 ;text-align: center;">VACCINE</p>
+</div> 
+</div> 
+<br><br><br><br><br>
+<div class="last part" style="background-color: black; height: 150px; width: 100%; display: flex; justify-content: space-between;">
+ <div class="adderess "  style="color: azure; height: 10px; width: 250px; margin-top: 20px;" >
+  <h2 style="font-family: 'Times New Roman', Times, serif; color: azure; font-size: 24px;"><b>REACH US</b></h2>
+  <br>
+  <p style="color: bold azure; font-size: 16px;"><address> Chamarajendra Zoological Gardens, Zoo mian road, Indiranagar, Mysore, Karnataka 5700010</address></p>
+  </div>
+  <div class="media" style="margin-top: 20px; margin-right: 5px;">
+ <p style="color: azure; font-size: 25px;"><b>Ph</b> - 0821 244 0752</p>   
+ <br>
+ <p style="color: azure; font-size: 25px;"><b> Mail</b> -zoomysore@gmail.com</p>
+ </div>
+</div>
+</body>
+</html>
